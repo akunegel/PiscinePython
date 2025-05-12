@@ -1,0 +1,23 @@
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+
+def display_image(title, array):
+    plt.imshow(array)
+    plt.title(title)
+    plt.axis('off')
+    plt.show()
+
+def ft_load(path: str) -> np.ndarray:
+    if not (path.lower().endswith(".jpg") or path.lower().endswith(".jpeg")):
+        print("Error: file does not have JPEG or JPG format.")
+        return np.array([])
+    try:
+        with Image.open(path) as img:
+            img = img.convert('RGB')
+            arr = np.array(img)
+            display_image("Figure VIII.1: Original", arr)
+            return arr
+    except:
+        print(f"Error: could not open file or file does not have correct format.")
+        return np.array([])
