@@ -2,11 +2,13 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def display_image(title, array):
     plt.imshow(array)
     plt.title(title)
     plt.axis('off')
     plt.show()
+
 
 def ft_load(path: str) -> np.ndarray:
     if not (path.lower().endswith(".jpg") or path.lower().endswith(".jpeg")):
@@ -18,6 +20,6 @@ def ft_load(path: str) -> np.ndarray:
             arr = np.array(img)
             display_image("Figure VIII.1: Original", arr)
             return arr
-    except:
-        print(f"Error: could not open file or file does not have correct format.")
+    except Exception as e:
+        print(f"Error: could not open file. {e}")
         return np.array([])
